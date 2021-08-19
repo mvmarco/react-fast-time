@@ -57,7 +57,7 @@ const Date = styled.div`
   }
   &.active-month {
     transition: color 0.3s ease-in;
-    color: #b2b3b2;
+    color: rgba(136, 174, 180, 255);
   }
 `;
 
@@ -75,10 +75,10 @@ const Text = styled.span`
   padding: 20px;
 
   &.active {
-    background-color: #00ba91;
+    background-color: rgba(2, 179, 150, 255);
     text-align: center;
     border-radius: 16px;
-    color: #d5ece7df;
+    color: rgba(163, 228, 218, 255);
     display: flex;
     align-items: center;
     justify-content: center;

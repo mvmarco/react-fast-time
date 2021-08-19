@@ -6,11 +6,11 @@ export default function TimeLineIndex() {
   const DATE = new Date();
 
   return (
-    <>
+    <TimeLineIndexContainer>
       <Nav>
         <DateAndIcons>
-          <h1>{`${"Icon // 19 August"} ${DATE.getFullYear()}`}</h1>
-          <h1>icon // icon {" | "} icon</h1>
+          <h1>{`${"X 19 August"} ${DATE.getFullYear()}`}</h1>
+          <h1> X X {" | "} X</h1>
         </DateAndIcons>
         <Test>
           <hr></hr>
@@ -39,11 +39,16 @@ export default function TimeLineIndex() {
           <HoursComponent hour={hour} key={key} />
         ))}
       </TimeLineContainer>
-    </>
+    </TimeLineIndexContainer>
   );
 }
 // STYLES
+
+const TimeLineIndexContainer = styled.div`
+  height: 100vh;
+`;
 const Nav = styled.div`
+background-color: white;
   width: 100%;
   color: #20b295;
   /* background-color: #196262; */
@@ -60,7 +65,13 @@ const TimeLineContainer = styled.div`
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
+  height: 70vh;
+  overflow: scroll;
+  scroll-snap-type: proximity;
+  scroll-snap-type: y proximity;
+  flex: 1;
 `;
+
 
 ///////////////////////////////////////
 const Cards = styled.div`
@@ -68,6 +79,7 @@ const Cards = styled.div`
   justify-content: space-between;
   padding: 20px;
   margin-left: 0px;
+  background-color: white;
 `;
 const TimeEntry = styled.div`
   display: flex;

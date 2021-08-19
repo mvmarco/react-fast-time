@@ -41,27 +41,22 @@ const Row = styled.div`
 `;
 
 const Wrapper = styled.div`
-  position: fixed;
   width: 100%;
-  top: 89px;
   overflow: scroll;
-  height: calc(100vh - 86px);
+  height: 40vh;
   scroll-snap-type: proximity;
   scroll-snap-type: y proximity;
-  margin-top: 20px;
-  
+  margin-top: 20px; // problem
 `;
 ;
 // STYLES
 const Nav = styled.div`
-  color: #20b295;
-  position: fixed;
+  color: rgba(4, 173, 147, 255);
   width: 100%;
-  background-color: #196262;
+  background-color: rgba(20, 97, 101, 255);
 `;
 
 const CalendarContainer = styled.div`
-  color: #55887d;
-  background-color: #196262;
-
+  color: rgb(53 128 131);
+  background-color: rgba(20, 97, 101, 255);
 `;
