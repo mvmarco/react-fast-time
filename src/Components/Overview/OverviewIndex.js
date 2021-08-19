@@ -24,7 +24,6 @@ const OverviewIndex = () => {
      
   return (
     <OverviewContainer>
-      <h1>test</h1>
         <TabsContainer>
           <Indicator
             style={{
@@ -53,8 +52,11 @@ const OverviewIndex = () => {
 };
 
 const OverviewContainer = styled.div`
-  background-color: lightgray;
+  background-color: white;
   padding: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  height: 50%;
 `;
 const Indicator = styled.div`
   width: 30%;
@@ -62,7 +64,7 @@ const Indicator = styled.div`
   position: absolute;
   /* z-index: -1; */
   height: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s;
 `;
@@ -72,14 +74,14 @@ const TabsContainer = styled.div`
   justify-content: space-between;
   position: relative;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
 `;
 
 const Tab = styled.div`
   display: flex;
   width: 35%;
- 
+  background-color: rgba(242, 241, 243, 255);
   padding: 10px;
   justify-content: center;
   cursor: pointer;

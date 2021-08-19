@@ -77,7 +77,7 @@ const Text = styled.span`
   &.active {
     background-color: rgba(2, 179, 150, 255);
     text-align: center;
-    border-radius: 16px;
+    border-radius: 10px;
     color: rgba(163, 228, 218, 255);
     display: flex;
     align-items: center;

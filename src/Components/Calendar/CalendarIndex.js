@@ -59,4 +59,8 @@ const Nav = styled.div`
 const CalendarContainer = styled.div`
   color: rgb(53 128 131);
   background-color: rgba(20, 97, 101, 255);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 50%;
 `;

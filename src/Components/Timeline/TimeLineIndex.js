@@ -46,6 +46,9 @@ export default function TimeLineIndex() {
 
 const TimeLineIndexContainer = styled.div`
   height: 100vh;
+  margin-left: 10px;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 const Nav = styled.div`
 background-color: white;
@@ -87,7 +90,7 @@ const TimeEntry = styled.div`
   width: 49%;
   padding: 20px;
   background-color: #e9e9e9;
-  border-radius: 16px;
+  border-radius: 10px;
   color: #20b295;
 `;
 const Calendar = styled.div`
@@ -96,7 +99,7 @@ const Calendar = styled.div`
   width: 48%;
   padding: 20px;
   background-color: #e9e9e9;
-  border-radius: 16px;
+  border-radius: 10px;
   color: #20b295;
 `;
 const Test = styled.div`

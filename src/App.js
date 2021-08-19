@@ -25,7 +25,8 @@ const GlobalWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
-  background-color: rgba(231, 230, 235, 255);
+  background-color: rgba(234,234,239,255);
+  margin: 10px; // issue
 `;
 const BoxOne = styled.div`
 width: 40%;
