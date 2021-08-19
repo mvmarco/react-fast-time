@@ -1,14 +1,12 @@
 import HoursComponent from "./HoursComponent";
 import styled from "styled-components";
-import { HOURS } from "./utils/constantsHours";
-import GlobalStyle from "../../styles/GlobalStyle";
+import { HOURS } from "../../Utils/constantsHours";
 
 export default function TimeLineIndex() {
   const DATE = new Date();
 
   return (
     <>
-      <GlobalStyle />
       <Nav>
         <DateAndIcons>
           <h1>{`${"Icon // 19 August"} ${DATE.getFullYear()}`}</h1>

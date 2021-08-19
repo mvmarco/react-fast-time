@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import GlobalStyle from "../../Styles/GlobalStyle";
 import CalendarComponent from "./CalendarComponent";
 import DayComponent from "./DayComponent";
 import { MONTH, DATE, WEEK } from "../../Utils/constantsCalendar";

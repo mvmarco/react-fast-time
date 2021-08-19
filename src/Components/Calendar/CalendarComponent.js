@@ -1,5 +1,5 @@
 import { DAYSINWEEK, WEEKSINYEAR } from "../../Utils/constantsCalendar";
-import { generateDateGrid } from "../../Utils/dateutils";
+import { generateDateGrid } from "../../Utils/dateUtils";
 import DateComponent from "./DateComponent";
 import MonthComponent from "./MonthComponent";
 import styled from "styled-components";
