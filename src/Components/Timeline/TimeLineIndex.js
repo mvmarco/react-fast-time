@@ -11,9 +11,12 @@ export default function TimeLineIndex() {
     <TimeLineIndexContainer>
       <Nav>
         <DateAndIcons>
-          <h1>{` ${DATE.getUTCDate()} ${
-            MONTH[activeMonth]
-          } ${DATE.getFullYear()}`}</h1>
+          <h1>
+            
+            {` ${DATE.getUTCDate()} ${
+              MONTH[activeMonth]
+            } ${DATE.getFullYear()}`}
+          </h1>
           <h1> X X {" | "} X</h1>
         </DateAndIcons>
         <MainTimeLineLine>
