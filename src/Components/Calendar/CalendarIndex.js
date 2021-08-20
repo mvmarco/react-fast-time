@@ -1,21 +1,21 @@
 import styled from "styled-components";
 import CalendarComponent from "./CalendarComponent";
-import DayComponent from "./DayComponent";
+import DaysOfTheWeekComponent from "./DaysOfTheWeekComponent";
 import { MONTH, DATE, WEEK } from "../../Utils/constantsCalendar";
 import { useState } from "react";
 
 export default function CalendarIndex() {
   const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
   return (
-    <CalendarContainer className='calendarContainer'>
+    <CalendarContainer className="calendarContainer">
       <Nav>
         <h1>
           {MONTH[activeMonth]}{" "}
           <Year style={{ color: "white" }}>{DATE.getFullYear()}</Year>
         </h1>{" "}
         <Row>
-          {WEEK.map((week, key) => (
-            <DayComponent day={week} key={key} />
+          {WEEK.map((dayOfTheWeek, key) => (
+            <DaysOfTheWeekComponent dayOfTheWeek={dayOfTheWeek} key={key} />
           ))}
         </Row>
       </Nav>

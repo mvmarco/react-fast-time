@@ -6,8 +6,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
-  // const [monthInViewport, setMonthInViewport] = useState(2);
-  // setActiveMonth(monthInViewport);
+  // STATES
   const [monthRowFunction, setMonthRowFunction] = useState([]);
   useEffect(() => {
     const dateGrid = generateDateGrid(activeMonth);
@@ -15,7 +14,6 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
     const firstDayInMonth = [];
     const weekRowValue = [];
 
-    //from 0 to 54
     console.log(dateGrid);
     for (let weekIndex = 0; weekIndex < WEEKSINYEAR; weekIndex++) {
       let weekRow = [];

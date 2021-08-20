@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
-const DayComponent = (props) => {
-  return(
+const DaysOfTheWeekComponent = (props) => {
+  console.log(props);
+  return (
     <Day>
-      <Title>
-        {props.day}
-      </Title>
-      
+      <Title>{props.dayOfTheWeek}</Title>
     </Day>
-  )
+  );
 };
 
 // STYLES
@@ -23,4 +21,4 @@ const Title = styled.div`
   color: white;
 `;
 
-export default DayComponent;
+export default DaysOfTheWeekComponent;
