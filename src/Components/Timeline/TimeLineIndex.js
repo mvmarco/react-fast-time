@@ -1,20 +1,24 @@
 import HoursComponent from "./HoursComponent";
 import styled from "styled-components";
 import { HOURS } from "../../Utils/constantsHours";
+import { useState } from "react";
+import { DATE, MONTH } from "../../Utils/constantsCalendar";
 
 export default function TimeLineIndex() {
-  const DATE = new Date();
+  const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
 
   return (
     <TimeLineIndexContainer>
       <Nav>
         <DateAndIcons>
-          <h1>{`${"X 20 August"} ${DATE.getFullYear()}`}</h1>
+          <h1>{` ${DATE.getUTCDate()} ${
+            MONTH[activeMonth]
+          } ${DATE.getFullYear()}`}</h1>
           <h1> X X {" | "} X</h1>
         </DateAndIcons>
-        <Test>
+        <MainTimeLineLine>
           <hr></hr>
-        </Test>
+        </MainTimeLineLine>
       </Nav>
       <Cards>
         <TimeEntry>
@@ -52,7 +56,7 @@ const TimeLineIndexContainer = styled.div`
   overflow: hidden;
 `;
 const Nav = styled.div`
-background-color: white;
+  background-color: white;
   width: 100%;
   color: #20b295;
   /* background-color: #196262; */
@@ -62,6 +66,15 @@ background-color: white;
 const DateAndIcons = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+const MainTimeLineLine = styled.div`
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  font-size: 12px;
+  &.hr {
+    border: -1.9px solid;
+  }
 `;
 
 const TimeLineContainer = styled.div`
@@ -76,7 +89,6 @@ const TimeLineContainer = styled.div`
   flex: 1;
 `;
 
-
 ///////////////////////////////////////
 const Cards = styled.div`
   display: flex;
@@ -90,7 +102,7 @@ const TimeEntry = styled.div`
   justify-content: space-between;
   width: 49%;
   padding: 20px;
-  background-color: #e9e9e9;
+  background-color: #f2f1f3;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   color: #20b295;
@@ -100,18 +112,8 @@ const Calendar = styled.div`
   justify-content: space-between;
   width: 48%;
   padding: 20px;
-  background-color: #e9e9e9;
+  background-color: #f2f1f3;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   color: #20b295;
-`;
-const Test = styled.div`
-  width: 100%;
-  margin: auto;
-  text-align: center;
-  color: #939393;
-  font-size: 12px;
-  &.hr {
-    border: -1.9px solid;
-  }
 `;

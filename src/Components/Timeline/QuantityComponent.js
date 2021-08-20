@@ -1,18 +1,16 @@
 import styled from "styled-components";
 const QuantityComponent = (props) => {
   return (
-    <Test>
+    <HoursLines>
       <hr></hr>
-    </Test>
+    </HoursLines>
   );
 };
 
-const Test = styled.div`
+const HoursLines = styled.div`
   width: 100%;
   margin: auto;
-  color: #939393;
   margin-left: 0px;
-  font-size: 12px;
   &.hr {
     border: -1.9px solid;
   }
