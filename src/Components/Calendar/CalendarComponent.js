@@ -31,6 +31,7 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
             day={dayIndex}
             month={firstDayInMonth.length}
             active={dateGrid[weekIndex][dayIndex][1]}
+            activeMonth={activeMonth}
           />
         );
       }
@@ -48,7 +49,7 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
             <MonthComponent
               key={index}
               mid={currentMonth - 1}
-              onVisible={setActiveMonth}
+              setActiveMonth={setActiveMonth}
               activeMonth={activeMonth}
             >
               {monthRow}
@@ -62,7 +63,7 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
         }
       });
     setMonthRowFunction(newMonthRowFunction);
-  }, []);
+  }, [activeMonth]);
 
   return monthRowFunction;
 };

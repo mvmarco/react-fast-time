@@ -6,7 +6,6 @@ import GlobalStyle from "./Styles/GlobalStyle";
 function App() {
   return (
     <div className="App">
-      {" "}
       <GlobalStyle />
       <GlobalWrapper>
         <BoxOne>
@@ -26,7 +25,7 @@ const GlobalWrapper = styled.div`
   width: 100%;
   height: 100vh;
   background-color: rgba(234,234,239,255);
-  margin: 10px; // issue
+  padding: 10px; // issue
 `;
 const BoxOne = styled.div`
 width: 40%;
@@ -34,6 +33,7 @@ width: 40%;
 
 const BoxTwo = styled.div`
   width: 60%;
+
 `;
 
 export default App;

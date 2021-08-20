@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { DATE, MONTH } from "../../Utils/constantsCalendar";
 
-const DateComponent = ({ value, day, month, active }) => {
+const DateComponent = ({ value, day, month, active, activeMonth }) => {
   //STATES
 
   // FUNCTIONS
@@ -17,19 +17,22 @@ const DateComponent = ({ value, day, month, active }) => {
   }
 
   function switchToActive(e) {
-    console.log(e.currentTarget)
+    console.log(e.currentTarget);
   }
-  console.log('check active:', active );
+  console.log("check active:", active);
   return (
     <Date
       className={`${day === 6 ? "sunday" : ""} ${active ? "active-month" : ""}`}
     >
       <DateBox>
-        <Text onClick={switchToActive} className={checkActive() ? "active" : ""}>{value}</Text>
+        <Text
+          onClick={switchToActive}
+          className={checkActive() ? "active" : ""}
+        >
+          {value}
+        </Text>
         {value === 1 ? (
-          <Month
-            className={DATE.getMonth() === month - 1 ? "month-active" : ""}
-          >
+          <Month className={activeMonth === month - 1 ? "active-month" : ""}>
             {MONTH[month - 1] && MONTH[month - 1].substr(0, 0)}
           </Month>
         ) : null}
@@ -42,13 +45,13 @@ const Date = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  height: 80px;
+  height: 50px;
   // borders around days of the month
   /* border-right: 1px solid #e6e5e6;
   border-bottom: 1px solid #e6e5e6; */
   padding: 0px 10px 0px 0px;
   box-sizing: border-box;
-  background-color: #196262;
+  background-color: #146165;
   &:last-child {
     border-right: 0;
   }

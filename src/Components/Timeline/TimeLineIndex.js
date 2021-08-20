@@ -9,7 +9,7 @@ export default function TimeLineIndex() {
     <TimeLineIndexContainer>
       <Nav>
         <DateAndIcons>
-          <h1>{`${"X 19 August"} ${DATE.getFullYear()}`}</h1>
+          <h1>{`${"X 20 August"} ${DATE.getFullYear()}`}</h1>
           <h1> X X {" | "} X</h1>
         </DateAndIcons>
         <Test>
@@ -45,9 +45,10 @@ export default function TimeLineIndex() {
 // STYLES
 
 const TimeLineIndexContainer = styled.div`
-  height: 100vh;
+  height: 98vh;
   margin-left: 10px;
   border-radius: 10px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 `;
 const Nav = styled.div`
@@ -56,7 +57,7 @@ background-color: white;
   color: #20b295;
   /* background-color: #196262; */
   color: black;
-  padding: 20px 20px 0px 20px;
+  padding: 0px 20px;
 `;
 const DateAndIcons = styled.div`
   display: flex;
@@ -68,7 +69,7 @@ const TimeLineContainer = styled.div`
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  height: 70vh;
+  height: 81vh;
   overflow: scroll;
   scroll-snap-type: proximity;
   scroll-snap-type: y proximity;
@@ -90,6 +91,7 @@ const TimeEntry = styled.div`
   width: 49%;
   padding: 20px;
   background-color: #e9e9e9;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   color: #20b295;
 `;
@@ -99,6 +101,7 @@ const Calendar = styled.div`
   width: 48%;
   padding: 20px;
   background-color: #e9e9e9;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   color: #20b295;
 `;
@@ -107,7 +110,6 @@ const Test = styled.div`
   margin: auto;
   text-align: center;
   color: #939393;
-  padding: 26px 0px 0px 0px;
   font-size: 12px;
   &.hr {
     border: -1.9px solid;

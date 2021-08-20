@@ -24,7 +24,7 @@ const OverviewIndex = () => {
      
   return (
     <OverviewContainer>
-        <TabsContainer>
+.        <TabsContainer>
           <Indicator
             style={{
               left: `${selectedIndex * 35}%`,
@@ -56,7 +56,8 @@ const OverviewContainer = styled.div`
   padding: 20px;
   margin-top: 10px;
   border-radius: 10px;
-  height: 50%;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  height: 49%;
 `;
 const Indicator = styled.div`
   width: 30%;

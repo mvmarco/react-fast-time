@@ -8,16 +8,17 @@ const MonthComponent = (props) => {
   useEffect(() => {
     let obs = new IntersectionObserver(
       (entries) => {
+        console.log('ok')
         entries.forEach((entry) => {
           if (entry.intersectionRatio >= 0.8) {
-            props.onVisible(props.mid);
+            props.setActiveMonth(props.mid);
           }
         });
       },
       {
-        root: null,
+        root: document.querySelector(".calendarContainer"),
         rootMargin: "0px",
-        threshold: 1,
+        threshold: 0.8,
       }
     );
     obs.observe(monthRef.current);

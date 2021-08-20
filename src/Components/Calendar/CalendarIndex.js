@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function CalendarIndex() {
   const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
   return (
-    <CalendarContainer>
+    <CalendarContainer className='calendarContainer'>
       <Nav>
         <h1>
           {MONTH[activeMonth]}{" "}
@@ -43,7 +43,7 @@ const Row = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   overflow: scroll;
-  height: 40vh;
+  height: calc(80% - 20px);
   scroll-snap-type: proximity;
   scroll-snap-type: y proximity;
   margin-top: 20px; // problem
@@ -54,6 +54,7 @@ const Nav = styled.div`
   color: rgba(4, 173, 147, 255);
   width: 100%;
   background-color: rgba(20, 97, 101, 255);
+  height:20%;
 `;
 
 const CalendarContainer = styled.div`
