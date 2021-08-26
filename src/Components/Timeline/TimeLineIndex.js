@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { HOURS } from "../../Utils/constantsHours";
 import { useState } from "react";
 import { DATE, MONTH } from "../../Utils/constantsCalendar";
+import { FaCheckCircle } from "react-icons/fa";
+import { BsPlay } from "react-icons/bs";
+import { FiPlusSquare } from "react-icons/fi";
+import { BsThreeDots } from "react-icons/bs";
 
 export default function TimeLineIndex() {
   const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
@@ -11,13 +15,36 @@ export default function TimeLineIndex() {
     <TimeLineIndexContainer>
       <Nav>
         <DateAndIcons>
-          <h1>
-            
-            {` ${DATE.getUTCDate()} ${
-              MONTH[activeMonth]
-            } ${DATE.getFullYear()}`}
-          </h1>
-          <h1> X X {" | "} X</h1>
+          <DateContainer>
+            <FaCheckCircle style={{ color: "#02B396", fontSize: "1.9em" }} />
+            <h1>
+              {` ${DATE.getUTCDate()} ${
+                MONTH[activeMonth]
+              } ${DATE.getFullYear()}`}
+            </h1>
+          </DateContainer>
+          <IconsContainer>
+            <BsPlay
+              style={{
+                color: "#02B396",
+                fontSize: "2.9em",
+              }}
+            />
+            <FiPlusSquare
+              style={{ color: "#02B396", fontSize: "2em", marginRight: "13px" }}
+            />
+            <p
+              style={{
+                fontSize: "2em",
+                fontWeight: "lighter",
+                color: "#d5d5d5",
+              }}
+            >
+              {" "}
+              | 
+            </p>
+            <BsThreeDots style={{ color: "#02B396", fontSize: "2em" }} />
+          </IconsContainer>
         </DateAndIcons>
         <MainTimeLineLine>
           <hr></hr>
@@ -70,6 +97,19 @@ const DateAndIcons = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+const DateContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const IconsContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+
+
 const MainTimeLineLine = styled.div`
   width: 100%;
   margin: auto;

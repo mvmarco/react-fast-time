@@ -1,13 +1,13 @@
 import styled from "styled-components";
 const QuantityComponent = (props) => {
   return (
-    <HoursLines>
+    <LineQuantityDiv>
       <hr></hr>
-    </HoursLines>
+    </LineQuantityDiv>
   );
 };
 
-const HoursLines = styled.div`
+const LineQuantityDiv = styled.div`
   width: 100%;
   margin: auto;
   margin-left: 0px;

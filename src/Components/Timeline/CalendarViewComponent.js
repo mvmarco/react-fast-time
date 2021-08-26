@@ -1,13 +1,13 @@
 import styled from "styled-components";
 const CalendarViewComponent = (props) => {
   return (
-    <Test>
+    <LineQuantityDiv>
       <hr></hr>
-    </Test>
+    </LineQuantityDiv>
   );
 };
 
-const Test = styled.div`
+const LineQuantityDiv = styled.div`
   width: 100%;
   margin: auto;
   margin-right: 20px;
