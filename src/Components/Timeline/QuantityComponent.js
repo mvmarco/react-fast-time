@@ -1,4 +1,6 @@
 import styled from "styled-components";
+
+
 const QuantityComponent = (props) => {
   return (
     <LineQuantityDiv>
