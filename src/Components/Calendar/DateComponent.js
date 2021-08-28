@@ -1,34 +1,55 @@
 import styled from "styled-components";
 import { DATE, MONTH } from "../../Utils/constantsCalendar";
+import {useEffect, useState} from 'react'
 
-const DateComponent = ({ value, day, month, active, activeMonth }) => {
+const DateComponent = ({
+  value,
+  day,
+  month,
+  active,
+  activeMonth,
+  setActive,
+  activeDay,
+}) => {
   //STATES
+  const [className,setClassName] = useState('')
 
   // FUNCTIONS
   function checkActive() {
     if (value === DATE.getDate() && month > 0) {
       if (month - 1 === DATE.getMonth()) {
-        //0-11
-        console.log({ value, day, month, active, DATE: DATE.getDate() });
-        return true;
+        if (activeDay) {
+          setClassName("current active");
+        } else {
+          setClassName("current");
+        }
       }
+    } else if (activeDay) {
+      setClassName("active");
+    } else {
+      setClassName("");
     }
-    return false;
   }
+  useEffect(() => {
+    checkActive();
+  }, [value, activeDay, month]);
+  
+   useEffect(() => {
+     checkActive();
+   }, []);
 
   function switchToActive(e) {
     console.log(e.currentTarget);
+    setActive();
   }
   console.log("check active:", active);
+
   return (
     <Date
       className={`${day === 6 ? "sunday" : ""} ${active ? "active-month" : ""}`}
     >
       <DateBox>
-        <Text
-          onClick={switchToActive}
-          className={checkActive() ? "active" : ""}
-        >
+        <Text onClick={switchToActive} className={className}>
           {value}
         </Text>
         {value === 1 ? (
@@ -86,6 +107,18 @@ const Text = styled.span`
     align-items: center;
     justify-content: center;
     font-weight: bold;
+  }
+  &.current {
+    text-align: center;
+    border-radius: 10px;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  &.current.active {
+    background-color: green;
   }
 `;
 

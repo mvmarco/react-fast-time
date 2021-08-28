@@ -8,60 +8,84 @@ import { useEffect, useState } from "react";
 const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
   // STATES
   const [monthRowFunction, setMonthRowFunction] = useState([]);
+  const [dateGrid, setDateGrid] = useState(null)
+
+  function handleActive(weekIndex, dayIndex) {
+    let newDateGrid = [...dateGrid];
+    newDateGrid.forEach(week => week.forEach(day => { day[2] = false }))
+    newDateGrid[weekIndex][dayIndex][1] = true
+    newDateGrid[weekIndex][dayIndex][2] = true
+
+    setDateGrid(newDateGrid)
+  }
+
   useEffect(() => {
     const dateGrid = generateDateGrid(activeMonth);
+    setDateGrid(dateGrid);
+  }, [activeMonth])
 
-    const firstDayInMonth = [];
-    const weekRowValue = [];
 
-    console.log(dateGrid);
-    for (let weekIndex = 0; weekIndex < WEEKSINYEAR; weekIndex++) {
-      let weekRow = [];
-      // from 0 to 7
-      for (let dayIndex = 0; dayIndex < DAYSINWEEK; dayIndex++) {
-        if (dateGrid[weekIndex][dayIndex][0] === 1) {
-          firstDayInMonth.push(weekIndex);
+  useEffect(() => {
+    if (dateGrid) {
+      const firstDayInMonth = [];
+      const weekRowValue = [];
+
+      console.log(dateGrid);
+      for (let weekIndex = 0; weekIndex < WEEKSINYEAR; weekIndex++) {
+        let weekRow = [];
+        // from 0 to 7
+        for (let dayIndex = 0; dayIndex < DAYSINWEEK; dayIndex++) {
+          if (dateGrid[weekIndex][dayIndex][0] === 1) {
+            firstDayInMonth.push(weekIndex);
+          }
+          weekRow.push(
+            <DateComponent
+              key={dayIndex + "" + firstDayInMonth.length}
+              value={dateGrid[weekIndex][dayIndex][0]}
+              day={dayIndex}
+              month={firstDayInMonth.length}
+              active={
+                dateGrid[weekIndex][dayIndex][1]
+              }
+              activeDay={dateGrid[weekIndex][dayIndex][2]}
+              setActive={() => handleActive(weekIndex, dayIndex)}
+              activeMonth={activeMonth}
+            />
+          );
         }
-        weekRow.push(
-          <DateComponent
-            key={dayIndex + "" + firstDayInMonth.length}
-            value={dateGrid[weekIndex][dayIndex][0]}
-            day={dayIndex}
-            month={firstDayInMonth.length}
-            active={dateGrid[weekIndex][dayIndex][1]}
-            activeMonth={activeMonth}
-          />
-        );
+        weekRowValue.push(<Week key={weekIndex}>{weekRow}</Week>);
       }
-      weekRowValue.push(<Week key={weekIndex}>{weekRow}</Week>);
+
+      let currentMonth = 1,
+        monthRow = [];
+
+      const newMonthRowFunction = Array(WEEKSINYEAR)
+        .fill(1)
+        .map((val, index) => {
+          if (index && index === firstDayInMonth[currentMonth]) {
+            const monthValue = (
+              <MonthComponent
+                key={index}
+                mid={currentMonth - 1}
+                setActiveMonth={setActiveMonth}
+                activeMonth={activeMonth}
+              >
+                {monthRow}
+              </MonthComponent>
+            );
+            currentMonth++;
+            monthRow = [weekRowValue[index]];
+            return monthValue;
+          } else {
+            monthRow.push(weekRowValue[index]);
+          }
+        });
+      setMonthRowFunction(newMonthRowFunction);
     }
 
-    let currentMonth = 1,
-      monthRow = [];
 
-    const newMonthRowFunction = Array(WEEKSINYEAR)
-      .fill(1)
-      .map((val, index) => {
-        if (index && index === firstDayInMonth[currentMonth]) {
-          const monthValue = (
-            <MonthComponent
-              key={index}
-              mid={currentMonth - 1}
-              setActiveMonth={setActiveMonth}
-              activeMonth={activeMonth}
-            >
-              {monthRow}
-            </MonthComponent>
-          );
-          currentMonth++;
-          monthRow = [weekRowValue[index]];
-          return monthValue;
-        } else {
-          monthRow.push(weekRowValue[index]);
-        }
-      });
-    setMonthRowFunction(newMonthRowFunction);
-  }, [activeMonth]);
+
+  }, [dateGrid]);
 
   return monthRowFunction;
 };
