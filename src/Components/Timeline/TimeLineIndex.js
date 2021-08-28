@@ -1,7 +1,7 @@
 import HoursComponent from "./HoursComponent";
 import styled from "styled-components";
 import { HOURS } from "../../Utils/constantsHours";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DATE, MONTH } from "../../Utils/constantsCalendar";
 import { FaCheckCircle } from "react-icons/fa";
 import { BsPlay } from "react-icons/bs";
@@ -10,6 +10,20 @@ import { BsThreeDots } from "react-icons/bs";
 
 export default function TimeLineIndex() {
   const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
+   const [minutes, setMinutes] = useState(DATE.getMinutes());
+   const [hours, setHours] = useState(DATE.getHours());
+
+   useEffect(() => {
+     const clear = setInterval(() => {
+       const newHours = new Date().getHours();
+       const newMinutes = new Date().getMinutes();
+       setHours(newHours);
+       setMinutes(newMinutes);
+       console.log("TEEEEEESSSTTTTTT", minutes, "XXXXXXX", newMinutes);
+     }, 1000);
+    
+   }, []);
+ 
 
   return (
     <TimeLineIndexContainer>
@@ -70,8 +84,9 @@ export default function TimeLineIndex() {
       </Cards>
       <TimeLineContainer>
         {HOURS.map((hour, key) => (
-          <HoursComponent hour={hour} key={key} />
+          <HoursComponent hours={hours} minutes={minutes} hour={hour} index={key} key={key} />
         ))}
+        
       </TimeLineContainer>
     </TimeLineIndexContainer>
   );
@@ -79,7 +94,7 @@ export default function TimeLineIndex() {
 // STYLES
 
 const TimeLineIndexContainer = styled.div`
-  height: 98vh;
+  height: 97.5vh;
   margin-left: 10px;
   border-radius: 10px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
@@ -125,11 +140,12 @@ const TimeLineContainer = styled.div`
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  height: 81vh;
+  height: 75vh;
   overflow: scroll;
   scroll-snap-type: proximity;
   scroll-snap-type: y proximity;
   flex: 1;
+  position: relative;
 `;
 
 ///////////////////////////////////////
@@ -160,3 +176,4 @@ const Calendar = styled.div`
   border-radius: 10px;
   color: #20b295;
 `;
+

@@ -29,11 +29,11 @@ const GlobalWrapper = styled.div`
 `;
 const BoxOne = styled.div`
 width: 40%;
+height: 97.5vh;
 `;
 
 const BoxTwo = styled.div`
   width: 60%;
-
 `;
 
 export default App;

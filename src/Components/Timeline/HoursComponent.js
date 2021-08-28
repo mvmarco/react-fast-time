@@ -6,7 +6,7 @@ const HoursComponent = (props) => {
     <TimeBlock>
       <Container style={{ marginRight: "10px" }}>
         <Times>{props.hour}</Times>
-        <QuantityComponent />
+        <QuantityComponent hours={props.hours} minutes={props.minutes} index={props.index} />
       </Container>
       <Container>
         <CalendarViewComponent />

@@ -3,6 +3,7 @@ const CalendarViewComponent = (props) => {
   return (
     <LineQuantityDiv>
       <hr></hr>
+      {/* <GreenLine></GreenLine> */}
     </LineQuantityDiv>
   );
 };
@@ -17,6 +18,16 @@ const LineQuantityDiv = styled.div`
   &.hr {
     border: -1.9px solid;
   }
+  position: relative;
+`;
+
+// GREENLINE
+const GreenLine = styled.div`
+ background-color: #31ee66;
+ height: 2px;
+ width: 100%;
+ position: absolute;
+ top: 2.5%;
 `;
 
 export default CalendarViewComponent;
