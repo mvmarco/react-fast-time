@@ -13,13 +13,14 @@ const DateComponent = ({
 }) => {
   //STATES
   const [className,setClassName] = useState('')
+  const [firstLoad, setFirstLoad] = useState(true);
 
   // FUNCTIONS
   function checkActive() {
     if (value === DATE.getDate() && month > 0) {
       if (month - 1 === DATE.getMonth()) {
-        if (activeDay) {
-          setClassName("current active");
+        if (activeDay || firstLoad) {
+          setClassName("active");
         } else {
           setClassName("current");
         }
@@ -32,24 +33,22 @@ const DateComponent = ({
   }
   useEffect(() => {
     checkActive();
-  }, [value, activeDay, month]);
-  
+    setFirstLoad(false)
+  }, [value, activeDay, month,active]);
+
    useEffect(() => {
      checkActive();
+   
    }, []);
 
-  function switchToActive(e) {
-    console.log(e.currentTarget);
-    setActive();
-  }
-  console.log("check active:", active);
+ 
 
   return (
     <Date
       className={`${day === 6 ? "sunday" : ""} ${active ? "active-month" : ""}`}
     >
       <DateBox>
-        <Text onClick={switchToActive} className={className}>
+        <Text onClick={setActive} className={className}>
           {value}
         </Text>
         {value === 1 ? (
@@ -117,9 +116,7 @@ const Text = styled.span`
     justify-content: center;
     font-weight: bold;
   }
-  &.current.active {
-    background-color: green;
-  }
+ 
 `;
 
 const Month = styled.div`
