@@ -1,15 +1,26 @@
+// styled components
 import styled from "styled-components";
+// components
 import CalendarViewComponent from "./CalendarViewComponent";
 import QuantityComponent from "./QuantityComponent";
-const HoursComponent = (props) => {
+
+const TimeLineComponent = (props) => {
   return (
     <TimeBlock>
       <Container style={{ marginRight: "10px" }}>
         <Times>{props.hour}</Times>
-        <QuantityComponent hours={props.hours} minutes={props.minutes} index={props.index} />
+        <QuantityComponent
+          hours={props.hours}
+          minutes={props.minutes}
+          index={props.index}
+        />
       </Container>
       <Container>
-        <CalendarViewComponent />
+        <CalendarViewComponent
+          hours={props.hours}
+          minutes={props.minutes}
+          index={props.index}
+        />
       </Container>
     </TimeBlock>
   );
@@ -33,4 +44,4 @@ const Container = styled.div`
   width: 48%;
 `;
 
-export default HoursComponent;
+export default TimeLineComponent;

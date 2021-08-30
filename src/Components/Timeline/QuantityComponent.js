@@ -1,47 +1,25 @@
-import { printIntrospectionSchema } from "graphql";
+// react
 import { useEffect, useState } from "react";
+// styled components
 import styled from "styled-components";
-import { DATE } from "../../Utils/constantsCalendar";
+import GreenCurrentTimeLine from "./GreenCurrentTimeLine";
+// components
+import GreyHoursLine from "./GreyHoursLine";
 
-const QuantityComponent = ({ index,hours,minutes }) => {
- 
-  console.log("INDEXXXXXXXXX",index);
-  console.log("MINUTESSSSSSS", minutes);
-  const ratio = minutes / 60;
-  const topValue = 54 * ratio;
-  
+const QuantityComponent = ({ index, hours, minutes }) => {
   return (
-    <LineQuantityDiv>
-      <hr></hr>
-      {index === hours && (
-        <GreenLine
-          style={{
-            top: `${topValue}px`,
-          }}
-        ></GreenLine>
-      )}
-    </LineQuantityDiv>
+    <LinesQuantityDiv>
+      <GreyHoursLine />
+      <GreenCurrentTimeLine index={index} hours={hours} minutes={minutes} />
+    </LinesQuantityDiv>
   );
 };
 
-const LineQuantityDiv = styled.div`
+const LinesQuantityDiv = styled.div`
   width: 100%;
   margin: auto;
   margin-left: 0px;
-  &.hr {
-    border: -1.9px solid;
-  }
   position: relative;
-`;
-
-// GREENLINE
-const GreenLine = styled.div`
-  background-color: #31ee66;
-  height: 2px;
-  width: 100%;
-  position: absolute;
-  top: 54px;
-  z-index: 99;
 `;
 
 export default QuantityComponent;

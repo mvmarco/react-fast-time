@@ -1,33 +1,23 @@
 import styled from "styled-components";
-const CalendarViewComponent = (props) => {
+import GreenCurrentTimeLine from "./GreenCurrentTimeLine";
+import GreyHoursLine from "./GreyHoursLine";
+const CalendarViewComponent = ({index, hours, minutes}) => {
   return (
-    <LineQuantityDiv>
-      <hr></hr>
-      {/* <GreenLine></GreenLine> */}
-    </LineQuantityDiv>
+    <LinesQuantityDiv>
+      <GreyHoursLine />
+      <GreenCurrentTimeLine index={index} hours={hours} minutes={minutes} />
+    </LinesQuantityDiv>
   );
 };
 
-const LineQuantityDiv = styled.div`
+const LinesQuantityDiv = styled.div`
   width: 100%;
   margin: auto;
-  margin-right: 20px;
-  text-align: center;
-  color: #939393;
-  font-size: 12px;
-  &.hr {
-    border: -1.9px solid;
-  }
+  margin-left: 0px;
   position: relative;
+  margin-right: 20px;
 `;
 
-// GREENLINE
-const GreenLine = styled.div`
- background-color: #31ee66;
- height: 2px;
- width: 100%;
- position: absolute;
- top: 2.5%;
-`;
+
 
 export default CalendarViewComponent;

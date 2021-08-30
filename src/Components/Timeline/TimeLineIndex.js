@@ -1,8 +1,13 @@
-import HoursComponent from "./HoursComponent";
-import styled from "styled-components";
-import { HOURS } from "../../Utils/constantsHours";
+// react
 import { useEffect, useState } from "react";
+// components
+import TimeLineComponent from "./TimeLineComponent";
+// utils
+import { HOURS } from "../../Utils/constantsHours";
 import { DATE, MONTH } from "../../Utils/constantsCalendar";
+// styled components
+import styled from "styled-components";
+// icons
 import { FaCheckCircle } from "react-icons/fa";
 import { BsPlay } from "react-icons/bs";
 import { FiPlusSquare } from "react-icons/fi";
@@ -84,15 +89,21 @@ export default function TimeLineIndex() {
       </Cards>
       <TimeLineContainer>
         {HOURS.map((hour, key) => (
-          <HoursComponent hours={hours} minutes={minutes} hour={hour} index={key} key={key} />
+          <TimeLineComponent
+            hours={hours}
+            minutes={minutes}
+            hour={hour}
+            index={key}
+            key={key}
+          />
         ))}
-        
       </TimeLineContainer>
     </TimeLineIndexContainer>
   );
 }
 // STYLES
 
+// MAIN DIV
 const TimeLineIndexContainer = styled.div`
   height: 97.5vh;
   margin-left: 10px;
@@ -100,6 +111,8 @@ const TimeLineIndexContainer = styled.div`
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 `;
+
+// FIRST SECTION NAV
 const Nav = styled.div`
   background-color: white;
   width: 100%;
@@ -123,8 +136,6 @@ const IconsContainer = styled.div`
   align-items: center;
 `;
 
-
-
 const MainTimeLineLine = styled.div`
   width: 100%;
   margin: auto;
@@ -135,20 +146,7 @@ const MainTimeLineLine = styled.div`
   }
 `;
 
-const TimeLineContainer = styled.div`
-  width: 100%;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  height: 75vh;
-  overflow: scroll;
-  scroll-snap-type: proximity;
-  scroll-snap-type: y proximity;
-  flex: 1;
-  position: relative;
-`;
-
-///////////////////////////////////////
+// CARDS 
 const Cards = styled.div`
   display: flex;
   justify-content: space-between;
@@ -176,4 +174,19 @@ const Calendar = styled.div`
   border-radius: 10px;
   color: #20b295;
 `;
+
+// TIMELINE CONTAINER
+const TimeLineContainer = styled.div`
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  overflow: scroll;
+  scroll-snap-type: proximity;
+  scroll-snap-type: y proximity;
+  flex: 1;
+  position: relative;
+`;
+
 
