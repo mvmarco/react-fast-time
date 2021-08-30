@@ -26,6 +26,7 @@ const TimeLineComponent = (props) => {
   );
 };
 
+//STYLES
 const TimeBlock = styled.div`
   display: flex;
   width: 100%;

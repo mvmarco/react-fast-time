@@ -94,8 +94,8 @@ export default function TimeLineIndex() {
     </TimeLineIndexContainer>
   );
 }
-// STYLES
 
+// STYLES
 // MAIN DIV
 const TimeLineIndexContainer = styled.div`
   height: 97.6vh;

@@ -1,16 +1,14 @@
+// styled components
 import styled from "styled-components";
 
 const GreenCurrentTimeLine = ({ index, hours, minutes }) => {
   // consts
-  const ratio = minutes / 60; 
+  const ratio = minutes / 60;
   const topValue = 54 * ratio; // 54 in the height of the GreenLine Div
   return (
     <>
       {index === hours && (
         <GreenLine
-          index={index}
-          hours={hours}
-          minutes={minutes}
           style={{
             top: `${topValue}px`,
           }}
@@ -21,6 +19,8 @@ const GreenCurrentTimeLine = ({ index, hours, minutes }) => {
     </>
   );
 };
+
+// STYLES
 const GreenLine = styled.div`
   background-color: #02b396;
   height: 2px;
@@ -32,6 +32,7 @@ const GreenLine = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const Dot = styled.div`
   background-color: #02b396;
   position: absolute;

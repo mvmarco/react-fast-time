@@ -15,6 +15,7 @@ const QuantityComponent = ({ index, hours, minutes }) => {
   );
 };
 
+// STYLES
 const LinesQuantityDiv = styled.div`
   width: 100%;
   margin: auto;

@@ -1,8 +1,11 @@
+// styled components
 import styled from "styled-components";
 
 const GreyHoursLine = () => {
   return <GreyLine></GreyLine>;
-}
+};
+
+// STYLES
 const GreyLine = styled.div`
   background-color: #f2f1f3;
   height: 1px;
