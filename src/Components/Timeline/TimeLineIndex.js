@@ -15,20 +15,15 @@ import { BsThreeDots } from "react-icons/bs";
 
 export default function TimeLineIndex() {
   const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
-   const [minutes, setMinutes] = useState(DATE.getMinutes());
-   const [hours, setHours] = useState(DATE.getHours());
+  const [minutes, setMinutes] = useState(DATE.getMinutes());
+  const [hours, setHours] = useState(DATE.getHours());
 
-   useEffect(() => {
-     const clear = setInterval(() => {
-       const newHours = new Date().getHours();
-       const newMinutes = new Date().getMinutes();
-       setHours(newHours);
-       setMinutes(newMinutes);
-       console.log("TEEEEEESSSTTTTTT", minutes, "XXXXXXX", newMinutes);
-     }, 1000);
-    
-   }, []);
- 
+  useEffect(() => {
+    setInterval(() => {
+      setHours(new Date().getHours());
+      setMinutes(new Date().getMinutes());
+    }, 1000);
+  }, []);
 
   return (
     <TimeLineIndexContainer>
@@ -65,9 +60,7 @@ export default function TimeLineIndex() {
             <BsThreeDots style={{ color: "#02B396", fontSize: "2em" }} />
           </IconsContainer>
         </DateAndIcons>
-        <MainTimeLineLine>
-          <hr></hr>
-        </MainTimeLineLine>
+        <MainTimeLineLine></MainTimeLineLine>
       </Nav>
       <Cards>
         <TimeEntry>
@@ -105,7 +98,7 @@ export default function TimeLineIndex() {
 
 // MAIN DIV
 const TimeLineIndexContainer = styled.div`
-  height: 97.5vh;
+  height: 97.6vh;
   margin-left: 10px;
   border-radius: 10px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
@@ -137,20 +130,17 @@ const IconsContainer = styled.div`
 `;
 
 const MainTimeLineLine = styled.div`
-  width: 100%;
-  margin: auto;
   text-align: center;
-  font-size: 12px;
-  &.hr {
-    border: -1.9px solid;
-  }
+  background-color: #c8c8c8;
+  height: 1px;
+  width: 100%;
 `;
 
-// CARDS 
+// CARDS
 const Cards = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
   margin-left: 0px;
   background-color: white;
 `;
@@ -181,12 +171,11 @@ const TimeLineContainer = styled.div`
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  height: 75vh;
+  height: 82vh;
   overflow: scroll;
   scroll-snap-type: proximity;
   scroll-snap-type: y proximity;
   flex: 1;
   position: relative;
+  padding-bottom: 20px;
 `;
-
-

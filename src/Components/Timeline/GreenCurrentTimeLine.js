@@ -14,7 +14,9 @@ const GreenCurrentTimeLine = ({ index, hours, minutes }) => {
           style={{
             top: `${topValue}px`,
           }}
-        ></GreenLine>
+        >
+          <Dot></Dot>
+        </GreenLine>
       )}
     </>
   );
@@ -25,6 +27,19 @@ const GreenLine = styled.div`
   width: 100%;
   position: absolute;
   top: 54px;
+  z-index: 98;
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+const Dot = styled.div`
+  background-color: #02b396;
+  position: absolute;
+  left: 10px;
+  border-radius: 20px;
+  width: 10px;
+  height: 10px;
   z-index: 99;
+  left: -1px;
 `;
 export default GreenCurrentTimeLine;
