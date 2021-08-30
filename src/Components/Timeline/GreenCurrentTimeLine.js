@@ -1,7 +1,7 @@
 // styled components
 import styled from "styled-components";
 
-const GreenCurrentTimeLine = ({ index, hours, minutes }) => {
+const GreenCurrentTimeLine = ({ index, hours, minutes, showDot }) => {
   // consts
   const ratio = minutes / 60;
   const topValue = 54 * ratio; // 54 in the height of the GreenLine Div
@@ -13,7 +13,7 @@ const GreenCurrentTimeLine = ({ index, hours, minutes }) => {
             top: `${topValue}px`,
           }}
         >
-          <Dot></Dot>
+          {showDot && <Dot></Dot>}
         </GreenLine>
       )}
     </>

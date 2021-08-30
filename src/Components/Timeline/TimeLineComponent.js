@@ -1,4 +1,5 @@
 // styled components
+import { useState } from "react";
 import styled from "styled-components";
 // components
 import CalendarViewComponent from "./CalendarViewComponent";
@@ -13,6 +14,7 @@ const TimeLineComponent = (props) => {
           hours={props.hours}
           minutes={props.minutes}
           index={props.index}
+          showDot={true}
         />
       </Container>
       <Container>
@@ -20,6 +22,7 @@ const TimeLineComponent = (props) => {
           hours={props.hours}
           minutes={props.minutes}
           index={props.index}
+          showDot={false}
         />
       </Container>
     </TimeBlock>

@@ -178,4 +178,7 @@ const TimeLineContainer = styled.div`
   flex: 1;
   position: relative;
   padding-bottom: 20px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

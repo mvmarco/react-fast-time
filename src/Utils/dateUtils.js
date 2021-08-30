@@ -105,10 +105,11 @@ export const generateDateGrid = (activeMonth) => {
 
   let weekValue = 0,
     k = indexOfFirstWeekDayOfTheYear;
-
+    // MONTHSINYEAR is 12
   for (let i = 0; i < MONTHSINYEAR; i++) {
+    //DAYSINMONTH[i] you take the respective days in each month
     for (let j = 0; j < DAYSINMONTH[i]; j++) {
-      dateGrid[weekValue][k][0] = j + 1;
+      dateGrid[weekValue][k][0] = j + 1; // for a respective day integer of the week = ?
       dateGrid[weekValue][k][1] = i === activeMonth;
       k++;
       if (k === DAYSINWEEK) {

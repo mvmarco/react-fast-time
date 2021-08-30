@@ -6,11 +6,16 @@ import GreenCurrentTimeLine from "./GreenCurrentTimeLine";
 // components
 import GreyHoursLine from "./GreyHoursLine";
 
-const QuantityComponent = ({ index, hours, minutes }) => {
+const QuantityComponent = ({ index, hours, minutes, showDot }) => {
   return (
     <LinesQuantityDiv>
       <GreyHoursLine />
-      <GreenCurrentTimeLine index={index} hours={hours} minutes={minutes} />
+      <GreenCurrentTimeLine
+        index={index}
+        hours={hours}
+        minutes={minutes}
+        showDot={showDot}
+      />
     </LinesQuantityDiv>
   );
 };

@@ -4,13 +4,17 @@ import GreyHoursLine from "./GreyHoursLine";
 // styled components
 import styled from "styled-components";
 
-const CalendarViewComponent = ({index, hours, minutes}) => {
+const CalendarViewComponent = ({index, hours, minutes, showDot}) => {
   return (
     <LinesQuantityDiv>
       <GreyHoursLine />
-      <GreenCurrentTimeLine index={index} hours={hours} minutes={minutes} style={{
-        
-      }} />
+      <GreenCurrentTimeLine
+        index={index}
+        hours={hours}
+        minutes={minutes}
+        showDot={showDot}
+        style={{}}
+      />
     </LinesQuantityDiv>
   );
 };
