@@ -79,12 +79,13 @@ export const generateDateGrid = (activeMonth) => {
 
   /* 
     the -1 after startDayOfTheYear is a way of making the start of the first week
-    of the year on thursday (index 4 of the array) instead of satuday (index 5 of the array). 
-    it is a trick that consider afterwards the leap year too
-    so we are actually using the year before (2020 instead of 2021). ????????????????
+    of the year on friday (index 4 of the array) instead of satuday (index 5 of the array). 
+    The reason why it was set to index 5 is because the british have the week starting
+    on sunday, so index 5 was actually friday.
+    it is a trick that consider also the leap year too, so using 2020 is fine.
   */
 
-  const startDayOfTheYear = calcFirstDayofYear(DATE.getFullYear()-1);
+  const startDayOfTheYear = calcFirstDayofYear(DATE.getFullYear()) -1;
   console.log("startDayOfTheYear", startDayOfTheYear);
   // To populate the first week of the grid
   for (let i = 0; i < startDayOfTheYear; i++) {
