@@ -75,25 +75,36 @@ export const generateDateGrid = (activeMonth) => {
     which contain two values in an array, the day itself and a false value
     as initial value. True is when the day as integer is the current day
   */
-  // console.log("CHECKKKKKKKKK HERE", dateGrid)
+  console.log("CHECKKKKKKKKK HERE", dateGrid)
 
   /* 
-    the -1 after startDayOfTheYear is a way of making the start of the first week
+    the -1 after indexOfFirstWeekDayOfTheYear is a way of making the start of the first week
     of the year on friday (index 4 of the array) instead of satuday (index 5 of the array). 
     The reason why it was set to index 5 is because the british have the week starting
     on sunday, so index 5 was actually friday.
     it is a trick that consider also the leap year too, so using 2020 is fine.
   */
 
-  const startDayOfTheYear = calcFirstDayofYear(DATE.getFullYear()) -1;
-  console.log("startDayOfTheYear", startDayOfTheYear);
+  const indexOfFirstWeekDayOfTheYear = calcFirstDayofYear(DATE.getFullYear()) -1;
   // To populate the first week of the grid
-  for (let i = 0; i < startDayOfTheYear; i++) {
-    dateGrid[0][i][0] = DAYSINMONTH[11] - (startDayOfTheYear - 1) + i;
+  for (let i = 0; i < indexOfFirstWeekDayOfTheYear; i++) {
+    /* 
+      - recap considering the 1 of january 2021.
+      - indexOfFirstWeekDayOfTheYear is 4 (index for friday)
+      - dateGrid is the array containing 54 weeks in a year, with inside another array of 7 weeks
+        and inside the current day in integer and true/false value corresponding on the current
+        day
+
+      here below you take, the first week, the current index and the current day in integer,
+      so if it is the 1 JANUARY you say: 1 
+      DAYSINMONTH is an array corresponding to how many days are in a month so it is like
+      0:31, 1: 28 etc etc
+    */
+    dateGrid[0][i][0] = DAYSINMONTH[11] - (indexOfFirstWeekDayOfTheYear - 1) + i;
   }
 
   let weekValue = 0,
-    k = startDayOfTheYear;
+    k = indexOfFirstWeekDayOfTheYear;
 
   for (let i = 0; i < MONTHSINYEAR; i++) {
     for (let j = 0; j < DAYSINMONTH[i]; j++) {
