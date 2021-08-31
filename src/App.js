@@ -6,6 +6,7 @@ import TimeLineIndex from "./Components/Timeline/TimeLineIndex";
 import GlobalStyle from "./Styles/GlobalStyle";
 // styled components
 import styled from "styled-components";
+import { BsBoxArrowInLeft } from "react-icons/bs";
 
 function App() {
   return (
@@ -13,11 +14,11 @@ function App() {
       <GlobalStyle />
       <GlobalWrapper>
         <BoxOne>
-          <CalendarIndex />
-          <OverviewIndex />
+          <TimeLineIndex />
         </BoxOne>
         <BoxTwo>
-          <TimeLineIndex />
+          <CalendarIndex />
+          <OverviewIndex />
         </BoxTwo>
       </GlobalWrapper>
     </div>
@@ -32,13 +33,14 @@ const GlobalWrapper = styled.div`
   background-color: rgba(234, 234, 239, 255);
   padding: 10px; // issue
 `;
+
 const BoxOne = styled.div`
-  width: 40%;
-  height: 97.5vh;
+  width: 75%;
 `;
 
 const BoxTwo = styled.div`
-  width: 60%;
+margin-left: 10px;
+  width: 25%;
+  height: 97.5vh;
 `;
-
 export default App;

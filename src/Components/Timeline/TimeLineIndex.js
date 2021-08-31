@@ -7,6 +7,11 @@ import { HOURS } from "../../Utils/constantsHours";
 import { DATE, MONTH } from "../../Utils/constantsCalendar";
 // styled components
 import styled from "styled-components";
+// CSS
+import "./Switch.css";
+
+// framer motion
+import { motion } from "framer-motion";
 // icons
 import { FaCheckCircle } from "react-icons/fa";
 import { BsPlay } from "react-icons/bs";
@@ -14,9 +19,12 @@ import { FiPlusSquare } from "react-icons/fi";
 import { BsThreeDots } from "react-icons/bs";
 
 export default function TimeLineIndex() {
+ 
+  // states
   const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
   const [minutes, setMinutes] = useState(DATE.getMinutes());
   const [hours, setHours] = useState(DATE.getHours());
+  const [isOn, setIsOn] = useState(false); // framer motion
 
   useEffect(() => {
     setInterval(() => {
@@ -25,6 +33,7 @@ export default function TimeLineIndex() {
     }, 1000);
   }, []);
 
+  const toggleSwitch = () => setIsOn(!isOn);
   return (
     <TimeLineIndexContainer>
       <Nav>
@@ -37,28 +46,36 @@ export default function TimeLineIndex() {
               } ${DATE.getFullYear()}`}
             </h1>
           </DateContainer>
-          <IconsContainer>
-            <BsPlay
+          <IconsAndSwitchsContainer>
+            <div className="switch" data-isOn={isOn} onClick={toggleSwitch}>
+              <motion.div className="handle" layout transition={spring} />
+            </div>
+            <MenuDayWeek>
+              <li className="day">
+                <p style={{ color: "#02B396" }}>Dag</p>
+              </li>
+              <span
+                style={{ fontSize: "20px", padding: "10px", color: "#d8d8d8" }}
+              >
+                {"|"}
+              </span>
+
+              <li className="week">
+                <p>Uge</p>
+              </li>
+            </MenuDayWeek>
+
+            {/* <BsPlay
               style={{
                 color: "#02B396",
                 fontSize: "2.9em",
               }}
-            />
+            /> */}
             <FiPlusSquare
-              style={{ color: "#02B396", fontSize: "2em", marginRight: "13px" }}
+              style={{ color: "#02B396", fontSize: "2em", margin: "0px 6px" }}
             />
-            <p
-              style={{
-                fontSize: "2em",
-                fontWeight: "lighter",
-                color: "#d5d5d5",
-              }}
-            >
-              {" "}
-              | 
-            </p>
             <BsThreeDots style={{ color: "#02B396", fontSize: "2em" }} />
-          </IconsContainer>
+          </IconsAndSwitchsContainer>
         </DateAndIcons>
         <MainTimeLineLine></MainTimeLineLine>
       </Nav>
@@ -95,11 +112,18 @@ export default function TimeLineIndex() {
   );
 }
 
+
+ // consts framer motion
+  const spring = {
+    type: "spring",
+    stiffness: 700,
+    damping: 30,
+  };
+
 // STYLES
 // MAIN DIV
 const TimeLineIndexContainer = styled.div`
   height: 97.6vh;
-  margin-left: 10px;
   border-radius: 10px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -114,6 +138,8 @@ const Nav = styled.div`
   color: black;
   padding: 0px 20px;
 `;
+
+// ICONS AND BUTTONS
 const DateAndIcons = styled.div`
   display: flex;
   justify-content: space-between;
@@ -124,16 +150,36 @@ const DateContainer = styled.div`
   align-items: center;
 `;
 
-const IconsContainer = styled.div`
+const IconsAndSwitchsContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+const MenuDayWeek = styled.ul`
+  display: flex;
+  align-items: center;
+  margin: 0px 12px;
+  li {
+    float: left;
+    list-style-type: none;
+    p {
+      font-weight: bolder;
+      color: #c5c5c5;
+    }
+  }
+`;
 
+
+// TIMELINE
 const MainTimeLineLine = styled.div`
   text-align: center;
   background-color: #c8c8c8;
   height: 1px;
   width: 100%;
+  padding: 0px 20px;
+  line-height: 20px;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  text-decoration: none;
 `;
 
 // CARDS
@@ -178,7 +224,7 @@ const TimeLineContainer = styled.div`
   flex: 1;
   position: relative;
   padding-bottom: 20px;
-   &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 `;
