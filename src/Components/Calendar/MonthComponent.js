@@ -8,7 +8,6 @@ const MonthComponent = (props) => {
   useEffect(() => {
     let obs = new IntersectionObserver(
       (entries) => {
-        console.log('ok')
         entries.forEach((entry) => {
           if (entry.intersectionRatio >= 0.8) {
             props.setActiveMonth(props.mid);

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const DaysOfTheWeekComponent = (props) => {
-  console.log(props);
+  // console.log("DAYS OF THE WEEK:",props);
   return (
     <Day>
       <Title>{props.dayOfTheWeek}</Title>

@@ -21,4 +21,4 @@ export const WEEKSINYEAR = 54;
 export const MONTHSINYEAR = 12;
 export const DAYSINWEEK = 7;
 export const DAYSINMONTH = getMonthsDaysInYear(DATE.getFullYear);
-console.log(DAYSINMONTH, "HELLLLLLLO HEREEEEEEEE DAYS IN MONTH ZZZXXXYY");
+console.log("DAYS IN MONTH:", DAYSINMONTH);

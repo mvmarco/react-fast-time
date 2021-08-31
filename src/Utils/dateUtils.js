@@ -75,7 +75,7 @@ export const generateDateGrid = (activeMonth) => {
     which contain two values in an array, the day itself and a false value
     as initial value. True is when the day as integer is the current day
   */
-  console.log("CHECKKKKKKKKK HERE", dateGrid)
+  console.log("DATE GRID", dateGrid)
 
   /* 
     the -1 after indexOfFirstWeekDayOfTheYear is a way of making the start of the first week

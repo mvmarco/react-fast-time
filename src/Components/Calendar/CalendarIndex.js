@@ -5,6 +5,7 @@ import { MONTH, DATE, WEEK } from "../../Utils/constantsCalendar";
 import { useState } from "react";
 
 export default function CalendarIndex() {
+  // FROM 0 TO 11, CURRENT MONTH
   const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
   return (
     <CalendarContainer>

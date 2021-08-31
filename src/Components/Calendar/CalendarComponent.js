@@ -12,7 +12,6 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
 
   function handleActive(weekIndex, dayIndex) {
     let newDateGrid = [...dateGrid.map(i=>[...i.map(y=>[...y])])];
-
     newDateGrid[weekIndex][dayIndex][2] = true;
     newDateGrid.forEach((week, i) =>
       week.forEach((day, y) => {
@@ -49,7 +48,6 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
       const firstDayInMonth = [];
       const weekRowValue = [];
 
-      console.log(dateGrid);
       for (let weekIndex = 0; weekIndex < WEEKSINYEAR; weekIndex++) {
         let weekRow = [];
         // from 0 to 7
