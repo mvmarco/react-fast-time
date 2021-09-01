@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# graphQL
+node_modules/
+nodemon.json
+.env
