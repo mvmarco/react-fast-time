@@ -6,8 +6,8 @@ const basicAuth = require("express-basic-auth");
 dotenv.config();
 
 const app = express();
-const graphQLSchema = require("./graphql/schema/index.cjs");
-const graphQLResolvers = require("./graphql/resolvers/index.cjs");
+const graphQLSchema = require("./graphQlCode/graphql/schema/index.cjs");
+const graphQLResolvers = require("./graphQlCode/graphql/resolvers/index.cjs");
 
 app.get("/", function (req, res) {
   res.send("Hello World!");
