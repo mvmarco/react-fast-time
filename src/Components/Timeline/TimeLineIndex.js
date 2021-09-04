@@ -17,15 +17,43 @@ import { FaCheckCircle } from "react-icons/fa";
 import { BsPlay } from "react-icons/bs";
 import { FiPlusSquare } from "react-icons/fi";
 import { BsThreeDots } from "react-icons/bs";
+import TimeEntryModal from "./TimeEntryModal";
 
 export default function TimeLineIndex() {
- 
-  // states
+  // STATES
   const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
   const [minutes, setMinutes] = useState(DATE.getMinutes());
   const [hours, setHours] = useState(DATE.getHours());
-  const [isOn, setIsOn] = useState(false); // framer motion
+  // STATES FOR SWITCH BUTTONS
+  const [isOnOne, setIsOnOne] = useState(false); // framer motion one switch
+  const [isOnTwo, setIsOnTwo] = useState(false); // framer motion second switch
+  // STATE FOR TABS INTERVAL/QUANTITY
+  const [selectedIndex, setselectedIndex] = useState(0); // for tabs
+  // STATE FOR TIME ENTRY MODAL
+  const [timeEntrymodalIsOpen, setTimeEntryModalIsOpen] = useState(false);
+  // DATA
+  const tabsIntervalQuantity = [
+    {
+      text: "Interval",
+    },
+    {
+      text: "Quantity",
+    },
+  ];
+  // SWITCH EVENTS
+  const toggleSwitchOne = () => setIsOnOne(!isOnOne);
+  const toggleSwitchTwo = () => setIsOnTwo(!isOnTwo);
 
+  //FUNCTIONS
+  const handleIndexSelection = (index) => {
+    setselectedIndex(index);
+  };
+
+  const handleOpeningModalTimeEntry = () => {
+    console.log("test");
+    setTimeEntryModalIsOpen(true);
+  };
+  // USEEFFECT GREEN LINE UPDATING ON CURRENT TIME
   useEffect(() => {
     setInterval(() => {
       setHours(new Date().getHours());
@@ -33,9 +61,16 @@ export default function TimeLineIndex() {
     }, 1000);
   }, []);
 
-  const toggleSwitch = () => setIsOn(!isOn);
   return (
     <TimeLineIndexContainer>
+      {timeEntrymodalIsOpen === true ? (
+        <TimeEntryModal
+          showModal={timeEntrymodalIsOpen}
+          setShowModal={setTimeEntryModalIsOpen}
+        />
+      ) : (
+        ""
+      )}
       <Nav>
         <DateAndIcons>
           <DateContainer>
@@ -47,9 +82,78 @@ export default function TimeLineIndex() {
             </h1>
           </DateContainer>
           <IconsAndSwitchsContainer>
-            <div className="switch" data-isOn={isOn} onClick={toggleSwitch}>
-              <motion.div className="handle" layout transition={spring} />
-            </div>
+            <IntervalQuantity>
+              <Indicator
+                style={{
+                  left: `${selectedIndex * 50}%`,
+                }}
+              />
+              {tabsIntervalQuantity.map((tab, index) => {
+                return (
+                  <Tab
+                    style={{
+                      color:
+                        selectedIndex === index
+                          ? "rgba(242,241,243,255)"
+                          : "rgba(2,179,150,255)",
+                    }}
+                    onClick={() => handleIndexSelection(index)}
+                    key={tab.text}
+                  >
+                    <p style={{ zIndex: 100 }}>{tab.text}</p>
+                  </Tab>
+                );
+              })}
+            </IntervalQuantity>
+            <PlanAndCalendar>
+              <PlanOption>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 10px",
+                    color: "#c5c5c5",
+                  }}
+                >
+                  <p
+                    style={{
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    Planlagt tid
+                  </p>
+                </div>
+                <div
+                  className="switch"
+                  data-ison={isOnOne}
+                  onClick={toggleSwitchOne}
+                >
+                  <motion.div className="handle" layout transition={spring} />
+                </div>
+              </PlanOption>
+              <CalendarOption>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 10px",
+                    color: "#c5c5c5",
+                  }}
+                >
+                  <p style={{ padding: "0px 10px" }}>Kalender</p>
+                </div>
+                <div
+                  className="switch"
+                  data-ison={isOnTwo}
+                
+                  onClick={toggleSwitchTwo}
+                >
+                  <motion.div className="handle" layout transition={spring} />
+                </div>
+              </CalendarOption>
+            </PlanAndCalendar>
             <MenuDayWeek>
               <li className="day">
                 <p style={{ color: "#02B396" }}>Dag</p>
@@ -71,10 +175,18 @@ export default function TimeLineIndex() {
                 fontSize: "2.9em",
               }}
             /> */}
-            <FiPlusSquare
-              style={{ color: "#02B396", fontSize: "2em", margin: "0px 6px" }}
-            />
-            <BsThreeDots style={{ color: "#02B396", fontSize: "2em" }} />
+            <div onClick={handleOpeningModalTimeEntry}>
+              <FiPlusSquare
+                style={{
+                  color: "#02B396",
+                  fontSize: "2.5em",
+                  margin: "0px 6px",
+                }}
+              />
+            </div>
+            <div>
+              <BsThreeDots style={{ color: "#02B396", fontSize: "2em" }} />
+            </div>
           </IconsAndSwitchsContainer>
         </DateAndIcons>
         <MainTimeLineLine></MainTimeLineLine>
@@ -112,13 +224,12 @@ export default function TimeLineIndex() {
   );
 }
 
-
- // consts framer motion
-  const spring = {
-    type: "spring",
-    stiffness: 700,
-    damping: 30,
-  };
+// consts framer motion
+const spring = {
+  type: "spring",
+  stiffness: 700,
+  damping: 30,
+};
 
 // STYLES
 // MAIN DIV
@@ -139,7 +250,7 @@ const Nav = styled.div`
   padding: 0px 20px;
 `;
 
-// ICONS AND BUTTONS
+// MAIN DIV  AND DATE
 const DateAndIcons = styled.div`
   display: flex;
   justify-content: space-between;
@@ -150,10 +261,61 @@ const DateContainer = styled.div`
   align-items: center;
 `;
 
+// ICONS AND SWITCH
 const IconsAndSwitchsContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+
+const IntervalQuantity = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  overflow: hidden;
+`;
+
+const Tab = styled.div`
+  display: flex;
+  width: 100%;
+  background-color: rgba(242, 241, 243, 255);
+  padding: 4px 10px;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+const Indicator = styled.div`
+  width: 50%;
+  background-color: rgba(2, 179, 150, 255);
+  position: absolute;
+  /* z-index: -1; */
+  height: 100%;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+`;
+
+const PlanAndCalendar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+`;
+
+const PlanOption = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+`;
+
+const CalendarOption = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+`;
+
 const MenuDayWeek = styled.ul`
   display: flex;
   align-items: center;
@@ -167,7 +329,6 @@ const MenuDayWeek = styled.ul`
     }
   }
 `;
-
 
 // TIMELINE
 const MainTimeLineLine = styled.div`

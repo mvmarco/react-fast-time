@@ -7,20 +7,23 @@ import GlobalStyle from "./Styles/GlobalStyle";
 // styled components
 import styled from "styled-components";
 import { BsBoxArrowInLeft } from "react-icons/bs";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   return (
     <div className="App">
-      <GlobalStyle />
-      <GlobalWrapper>
-        <BoxOne>
-          <TimeLineIndex />
-        </BoxOne>
-        <BoxTwo>
-          <CalendarIndex />
-          <OverviewIndex />
-        </BoxTwo>
-      </GlobalWrapper>
+      <AnimatePresence exitBeforeEnter>
+        <GlobalStyle />
+        <GlobalWrapper>
+          <BoxOne>
+            <TimeLineIndex />
+          </BoxOne>
+          <BoxTwo>
+            <CalendarIndex />
+            <OverviewIndex />
+          </BoxTwo>
+        </GlobalWrapper>
+      </AnimatePresence>
     </div>
   );
 }

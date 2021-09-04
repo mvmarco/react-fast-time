@@ -1,6 +1,5 @@
 import {
   DATE,
-  DAYSINMONTH,
   DAYSINWEEK,
   MONTHSINYEAR,
   WEEKSINYEAR,
@@ -62,7 +61,9 @@ const calcFirstDayofYear = (y, M = 0, k = 1) => {
   return T % 7;
 };
 
-export const generateDateGrid = (activeMonth) => {
+export const generateDateGrid = (activeMonth, year) => {
+  let DAYSINMONTH = getMonthsDaysInYear(year);
+
   // 54 rows, weeks in a year that will be filled by the second function
   const dateGrid = Array.from({ length: WEEKSINYEAR }, (_) =>
     // 7 columns, days in a week
@@ -75,7 +76,7 @@ export const generateDateGrid = (activeMonth) => {
     which contain two values in an array, the day itself and a false value
     as initial value. True is when the day as integer is the current day
   */
-  console.log("DATE GRID", dateGrid)
+  console.log("DATE GRID", dateGrid);
 
   /* 
     the -1 after indexOfFirstWeekDayOfTheYear is a way of making the start of the first week
@@ -85,7 +86,7 @@ export const generateDateGrid = (activeMonth) => {
     it is a trick that consider also the leap year too, so using 2020 is fine.
   */
 
-  const indexOfFirstWeekDayOfTheYear = calcFirstDayofYear(DATE.getFullYear()) -1;
+  const indexOfFirstWeekDayOfTheYear = calcFirstDayofYear(year) - 1;
   // To populate the first week of the grid
   for (let i = 0; i < indexOfFirstWeekDayOfTheYear; i++) {
     /* 
@@ -100,28 +101,35 @@ export const generateDateGrid = (activeMonth) => {
       DAYSINMONTH is an array corresponding to how many days are in a month so it is like
       0:31, 1: 28 etc etc
     */
-    dateGrid[0][i][0] = DAYSINMONTH[11] - (indexOfFirstWeekDayOfTheYear - 1) + i;
+    dateGrid[0][i][0] =
+      DAYSINMONTH[11] - (indexOfFirstWeekDayOfTheYear - 1) + i;
   }
 
   let weekValue = 0,
     k = indexOfFirstWeekDayOfTheYear;
-    // MONTHSINYEAR is 12
+  // MONTHSINYEAR is 12
   for (let i = 0; i < MONTHSINYEAR; i++) {
     //DAYSINMONTH[i] you take the respective days in each month
     for (let j = 0; j < DAYSINMONTH[i]; j++) {
-      dateGrid[weekValue][k][0] = j + 1; // for a respective day integer of the week = ?
-      dateGrid[weekValue][k][1] = i === activeMonth;
-      k++;
-      if (k === DAYSINWEEK) {
-        k = 0;
-        weekValue++;
+     // console.log(dateGrid[weekValue]);
+      if (dateGrid[weekValue][k]) {
+        dateGrid[weekValue][k][0] = j + 1; // for a respective day integer of the week = ?
+        dateGrid[weekValue][k][1] = i === activeMonth;
+        k++;
+        if (k === DAYSINWEEK) {
+          k = 0;
+          weekValue++;
+        }
       }
     }
   }
 
   // To populate the last row of the date grid
   for (let i = k; i < DAYSINWEEK; i++) {
-    dateGrid[weekValue][i][0] = i - k + 1;
+    if (dateGrid[weekValue][i]) {
+      dateGrid[weekValue][i][0] = i - k + 1;
+    }
+  //  console.log(i, k);
   }
   return dateGrid;
 };

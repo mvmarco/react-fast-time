@@ -2,18 +2,19 @@ import styled from "styled-components";
 import CalendarComponent from "./CalendarComponent";
 import DaysOfTheWeekComponent from "./DaysOfTheWeekComponent";
 import { MONTH, DATE, WEEK } from "../../Utils/constantsCalendar";
-import { useState } from "react";
+import { useState,useRef } from "react";
 
 export default function CalendarIndex() {
   // FROM 0 TO 11, CURRENT MONTH
   const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
+  const [year, setYear] = useState(new Date().getFullYear());
+  let block = useRef(null)
   return (
     <CalendarContainer>
       <Nav>
         <h1>
-          {MONTH[activeMonth]}{" "}
-          <Year style={{ color: "white" }}>{DATE.getFullYear()}</Year>
-        </h1>{" "}
+          {MONTH[activeMonth]} <Year style={{ color: "white" }}>{year}</Year>
+        </h1>
         <Row>
           {WEEK.map((dayOfTheWeek, key) => (
             <DaysOfTheWeekComponent dayOfTheWeek={dayOfTheWeek} key={key} />
@@ -21,10 +22,13 @@ export default function CalendarIndex() {
         </Row>
       </Nav>
 
-      <Wrapper>
+      <Wrapper ref={block}>
         <CalendarComponent
           setActiveMonth={setActiveMonth}
           activeMonth={activeMonth}
+          year={year}
+          setYear={setYear}
+          refToWrapper = {block}
         />
       </Wrapper>
     </CalendarContainer>

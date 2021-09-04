@@ -5,43 +5,61 @@ import MonthComponent from "./MonthComponent";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
-const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
+const CalendarComponent = ({
+  setActiveMonth,
+  activeMonth,
+  year,
+  setYear,
+  refToWrapper,
+}) => {
   // STATES
   const [monthRowFunction, setMonthRowFunction] = useState([]);
   const [dateGrid, setDateGrid] = useState(null);
 
+  useEffect(() => {
+    if (activeMonth === 12) {
+      setYear(+year + 1);
+      setActiveMonth(0);
+      refToWrapper.current.scrollTop = 0
+    }
+  }, [activeMonth]);
+
   function handleActive(weekIndex, dayIndex) {
-    let newDateGrid = [...dateGrid.map(i=>[...i.map(y=>[...y])])];
+    let newDateGrid = [
+      ...dateGrid.map((i) => [...i.map((y) => [y[0], y[1], false])]),
+    ];
     newDateGrid[weekIndex][dayIndex][2] = true;
-    newDateGrid.forEach((week, i) =>
+    /*newDateGrid.forEach((week, i) =>
       week.forEach((day, y) => {
         if (i !== weekIndex && y !== dayIndex) {
           day[2] = false;
         }
       })
-    );
+    );*/
     setDateGrid(newDateGrid);
   }
 
   useEffect(() => {
-    const dateGrid = generateDateGrid(activeMonth);
-    /*for (let weekIndex = 0; weekIndex < WEEKSINYEAR; weekIndex++) {
-      
-        // from 0 to 7
-        for (let dayIndex = 0; dayIndex < DAYSINWEEK; dayIndex++) {
-          if (dateGrid[weekIndex][dayIndex][0] === 1) {
-         
-            let indexOfFirstDay = dateGrid[weekIndex].findIndex(
-              (day) => day[0] === 1
-            );
-            dateGrid[weekIndex][indexOfFirstDay][2] = true;
-            setDateGrid(dateGrid);
-            return
+    if (activeMonth < 12) {
+      const dateGrid = generateDateGrid(activeMonth, year);
+      /*for (let weekIndex = 0; weekIndex < WEEKSINYEAR; weekIndex++) {
+        
+          // from 0 to 7
+          for (let dayIndex = 0; dayIndex < DAYSINWEEK; dayIndex++) {
+            if (dateGrid[weekIndex][dayIndex][0] === 1) {
+          
+              let indexOfFirstDay = dateGrid[weekIndex].findIndex(
+                (day) => day[0] === 1
+              );
+              dateGrid[weekIndex][indexOfFirstDay][2] = true;
+              setDateGrid(dateGrid);
+              return
+            }
           }
-        }
-      }*/
-    setDateGrid(dateGrid);
-  }, [activeMonth]);
+        }*/
+      setDateGrid(dateGrid);
+    }
+  }, [activeMonth, year]);
 
   useEffect(() => {
     if (dateGrid) {
